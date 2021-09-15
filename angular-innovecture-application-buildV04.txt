@@ -1,0 +1,46 @@
+/** ng new angular-innovecture-application-v02 **/
+cd angular-innovecture-application-v02
+
+npm install -g @angular/cli
+npm install cypress --save-dev
+npm install --save-dev cypress-cucumber-preprocessor
+npm install angular-in-memory-web-api --save
+npm install express sequelize mysql2 cors --save
+
+ng generate component dashboard
+
+ng generate component clients
+ng generate component messages
+ng generate component practices
+ng generate component regions
+ng generate component roles
+ng generate component statuses
+ng generate component users
+ng generate component openings
+ng generate component assignments
+
+ng generate component client-detail
+ng generate component practice-detail
+ng generate component region-detail
+ng generate component role-detail
+ng generate component status-detail
+ng generate component user-detail
+ng generate component opening-detail
+ng generate component assignment-detail
+
+ng generate component client-users
+ng generate component role-users
+
+ng generate service client
+ng generate service message
+ng generate service practice
+ng generate service region
+ng generate service role
+ng generate service status
+ng generate service user
+ng generate service opening
+ng generate service assignment
+
+ng generate module app-routing --flat --module=app
+npm install angular-in-memory-web-api --save
+ng generate service InMemoryData
