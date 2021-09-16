@@ -1,46 +1,100 @@
-/** ng new angular-innovecture-application-v02 **/
-cd angular-innovecture-application-v02
+/** API SERVER **/
+mkdir nodejs-express-sequelize-mysqlV10
+cd nodejs-express-sequelize-mysqlV10
+npm init
+
+npm install express sequelize mysql2 cors --save
+npm install bootstrap
+
+/**create /app/models/*.model.js **/
+/**create /app/controllers/*.controller.js **/
+/**define routes /app/routes/*.routes.js **/
+
+/** ANGULAR APPLICATION **/
+ng new Angular12CrudV10
+cd Angular12CrudV10
 
 npm install -g @angular/cli
 npm install cypress --save-dev
 npm install --save-dev cypress-cucumber-preprocessor
-npm install angular-in-memory-web-api --save
-npm install express sequelize mysql2 cors --save
+
+/** assignment **/
+ng generate service services/assignment 
+ng generate component components/add-assignment 
+ng generate component components/assignment-details
+ng generate component components/assignments-list
+ng generate class models/assignment --type=model
+
+/** client **/
+ng generate service services/client
+ng generate component components/add-client
+ng generate component components/client-details
+ng generate component components/clients-list
+ng generate class models/client --type=model
+
+/** opening **/
+ng generate service services/opening 
+ng generate component components/add-opening 
+ng generate component components/opening-details
+ng generate component components/openings-list
+ng generate class models/opening --type=model
+
+/** practice **/
+ng generate service services/practice 
+ng generate component components/add-practice
+ng generate component components/practice-details
+ng generate component components/practices-list
+ng generate class models/practice --type=model
+
+/** region **/
+ng generate service services/region 
+ng generate component components/add-region
+ng generate component components/region-details
+ng generate component components/regions-list
+ng generate class models/region --type=model
+
+/** role **/
+ng generate service services/role 
+ng generate component components/add-role
+ng generate component components/role-details
+ng generate component components/roles-list
+ng generate class models/role --type=model
+
+/** status **/
+ng generate service services/status
+ng generate component components/add-status
+ng generate component components/status-details
+ng generate component components/statuses-list
+ng generate class models/status --type=model
+
+/** tutorial **/
+ng generate service services/tutorial
+ng generate component components/add-tutorial
+ng generate component components/tutorial-details
+ng generate component components/tutorials-list
+ng generate class models/tutorial --type=model
+
+/** user **/
+ng generate service services/user
+ng generate component components/add-user
+ng generate component components/user-details
+ng generate component components/users-list
+ng generate class models/user --type=model
 
 ng generate component dashboard
-
-ng generate component clients
 ng generate component messages
-ng generate component practices
-ng generate component regions
-ng generate component roles
-ng generate component statuses
-ng generate component users
-ng generate component openings
-ng generate component assignments
-
-ng generate component client-detail
-ng generate component practice-detail
-ng generate component region-detail
-ng generate component role-detail
-ng generate component status-detail
-ng generate component user-detail
-ng generate component opening-detail
-ng generate component assignment-detail
-
-ng generate component client-users
-ng generate component role-users
-
-ng generate service client
 ng generate service message
-ng generate service practice
-ng generate service region
-ng generate service role
-ng generate service status
-ng generate service user
-ng generate service opening
-ng generate service assignment
 
+ng generate component client-assignments
+ng generate component client-openings
+ng generate component role-users
+ng generate component practice-assignments
+ng generate component practice-openings
+ng generate component practice-roles
+ng generate component practice-users
+
+/*** optional
 ng generate module app-routing --flat --module=app
 npm install angular-in-memory-web-api --save
 ng generate service InMemoryData
+***/

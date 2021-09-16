@@ -1,0 +1,35 @@
+<div>
+  <div *ngIf="currentStatus.id" class="edit-form">
+    <h4>Status</h4>
+    <form>
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input
+          type="text"
+          class="form-control"
+          id="title"
+          [(ngModel)]="currentStatus.title"
+          name="title"
+        />
+      </div>
+    </form>
+
+    <button class="badge badge-danger mr-2" (click)="deleteStatus()">
+      Delete
+    </button>
+
+    <button
+      type="submit"
+      class="badge badge-success mb-2"
+      (click)="updateStatus()"
+    >
+      Update
+    </button>
+    <p>{{ message }}</p>
+  </div>
+
+  <div *ngIf="!currentStatus.id">
+    <br />
+    <p>Cannot access this Status...</p>
+  </div>
+</div>
