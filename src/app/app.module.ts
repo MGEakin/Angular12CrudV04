@@ -40,6 +40,9 @@ import { PracticeAssignmentsComponent } from './practice-assignments/practice-as
 import { PracticeOpeningsComponent } from './practice-openings/practice-openings.component';
 import { PracticeRolesComponent } from './practice-roles/practice-roles.component';
 import { PracticeUsersComponent } from './practice-users/practice-users.component';
+import { AddClientComponent } from './components/add-client/add-client.component';
+import { ClientDetailsComponent } from './components/client-details/client-details.component';
+import { ClientsListComponent } from './components/clients-list/clients-list.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +79,10 @@ import { PracticeUsersComponent } from './practice-users/practice-users.componen
     PracticeAssignmentsComponent,
     PracticeOpeningsComponent,
     PracticeRolesComponent,
-    PracticeUsersComponent
+    PracticeUsersComponent,
+    AddClientComponent,
+    ClientDetailsComponent,
+    ClientsListComponent
   ],
   imports: [
     BrowserModule,

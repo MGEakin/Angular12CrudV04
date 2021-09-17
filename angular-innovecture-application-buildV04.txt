@@ -81,17 +81,17 @@ ng generate component components/user-details
 ng generate component components/users-list
 ng generate class models/user --type=model
 
-ng generate component dashboard
-ng generate component messages
+ng generate component components/dashboard
+ng generate component components/messages
 ng generate service message
 
-ng generate component client-assignments
-ng generate component client-openings
-ng generate component role-users
-ng generate component practice-assignments
-ng generate component practice-openings
-ng generate component practice-roles
-ng generate component practice-users
+ng generate component components/client-assignments
+ng generate component components/client-openings
+ng generate component components/role-users
+ng generate component components/practice-assignments
+ng generate component components/practice-openings
+ng generate component components/practice-roles
+ng generate component components/practice-users
 
 /*** optional
 ng generate module app-routing --flat --module=app

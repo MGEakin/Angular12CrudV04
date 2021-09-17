@@ -3,10 +3,31 @@
     <a href="#" class="navbar-brand">bezKoder</a>
     <div class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a routerLink="tutorials" class="nav-link">Tutorials</a>
+        <a routerLink="assignments" class="nav-link">Assignments</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="clients" class="nav-link">Clients</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="openings" class="nav-link">Openings</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="practices" class="nav-link">Practices</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="regions" class="nav-link">Regions</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="roles" class="nav-link">Roles</a>
       </li>
       <li class="nav-item">
         <a routerLink="statuses" class="nav-link">Statuses</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="tutorials" class="nav-link">Tutorials</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="users" class="nav-link">Users</a>
       </li>
 <!--      <li class="nav-item">-->
 <!--        <a routerLink="add" class="nav-link">Add</a>-->
@@ -16,5 +37,6 @@
 
   <div class="container mt-3">
     <router-outlet></router-outlet>
+    <app-messages></app-messages>
   </div>
 </div>

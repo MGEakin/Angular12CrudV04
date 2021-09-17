@@ -1,1 +1,35 @@
-<p>opening-details works!</p>
+<div>
+  <div *ngIf="currentOpening.id" class="edit-form">
+    <h4>Opening</h4>
+    <form>
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input
+          type="text"
+          class="form-control"
+          id="title"
+          [(ngModel)]="currentOpening.title"
+          name="title"
+        />
+      </div>
+    </form>
+
+    <button class="badge badge-danger mr-2" (click)="deleteOpening()">
+      Delete
+    </button>
+
+    <button
+      type="submit"
+      class="badge badge-success mb-2"
+      (click)="updateOpening()"
+    >
+      Update
+    </button>
+    <p>{{ message }}</p>
+  </div>
+
+  <div *ngIf="!currentOpening.id">
+    <br />
+    <p>Cannot access this Opening...</p>
+  </div>
+</div>

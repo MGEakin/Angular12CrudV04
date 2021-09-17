@@ -1,25 +1,72 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component, OnInit } from '@angular/core';
+import { Role } from 'src/app/models/role.model';
+import { RoleService } from 'src/app/services/role.service';
 
-import { RolesListComponent } from './roles-list.component';
+@Component({
+  selector: 'app-roles-list',
+  templateUrl: './roles-list.component.html',
+  styleUrls: ['./roles-list.component.css']
+})
+export class RolesListComponent implements OnInit {
 
-describe('RolesListComponent', () => {
-  let component: RolesListComponent;
-  let fixture: ComponentFixture<RolesListComponent>;
+  roles?: Role[];
+  currentRole: Role = {};
+  currentIndex = -1;
+  title = '';
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ RolesListComponent ]
-    })
-    .compileComponents();
-  });
+  constructor(private roleService: RoleService) { }
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(RolesListComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  ngOnInit(): void {
+    this.retrieveRoles();
+  }
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+  retrieveRoles(): void {
+    this.roleService.getAll()
+      .subscribe(
+        data => {
+          this.roles = data;
+          console.log(data);
+        },
+        error => {
+          console.log(error);
+        });
+  }
+
+  refreshList(): void {
+    this.retrieveRoles();
+    this.currentRole = {};
+    this.currentIndex = -1;
+  }
+
+  setActiveRole(role: Role, index: number): void {
+    this.currentRole = role;
+    this.currentIndex = index;
+  }
+
+  removeAllRoles(): void {
+    this.roleService.deleteAll()
+      .subscribe(
+        response => {
+          console.log(response);
+          this.refreshList();
+        },
+        error => {
+          console.log(error);
+        });
+  }
+
+  searchTitle(): void {
+    this.currentRole = {};
+    this.currentIndex = -1;
+
+    this.roleService.findByTitle(this.title)
+      .subscribe(
+        data => {
+          this.roles = data;
+          console.log(data);
+        },
+        error => {
+          console.log(error);
+        });
+  }
+}

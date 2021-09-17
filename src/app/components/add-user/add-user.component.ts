@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from 'src/app/models/user.model';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-add-user',
@@ -7,9 +9,36 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddUserComponent implements OnInit {
 
-  constructor() { }
+  user: User = {
+    name: ''
+  };
+  submitted = false;
+
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
   }
 
+  saveUser(): void {
+    const data = {
+      name: this.user.name
+    };
+
+    this.userService.create(data)
+      .subscribe(
+        response => {
+          console.log(response);
+          this.submitted = true;
+        },
+        error => {
+          console.log(error);
+        });
+  }
+
+  newUser(): void {
+    this.submitted = false;
+    this.user = {
+      name: ''
+    };
+  }
 }

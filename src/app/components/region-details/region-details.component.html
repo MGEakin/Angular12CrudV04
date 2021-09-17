@@ -1,1 +1,35 @@
-<p>region-details works!</p>
+<div>
+  <div *ngIf="currentRegion.id" class="edit-form">
+    <h4>Region</h4>
+    <form>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          [(ngModel)]="currentRegion.name"
+          name="name"
+        />
+      </div>
+    </form>
+
+    <button class="badge badge-danger mr-2" (click)="deleteRegion()">
+      Delete
+    </button>
+
+    <button
+      type="submit"
+      class="badge badge-success mb-2"
+      (click)="updateRegion()"
+    >
+      Update
+    </button>
+    <p>{{ message }}</p>
+  </div>
+
+  <div *ngIf="!currentRegion.id">
+    <br />
+    <p>Cannot access this Region...</p>
+  </div>
+</div>

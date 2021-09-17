@@ -1,1 +1,35 @@
-<p>practice-details works!</p>
+<div>
+  <div *ngIf="currentPractice.id" class="edit-form">
+    <h4>Practice</h4>
+    <form>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          [(ngModel)]="currentPractice.name"
+          name="name"
+        />
+      </div>
+    </form>
+
+    <button class="badge badge-danger mr-2" (click)="deletePractice()">
+      Delete
+    </button>
+
+    <button
+      type="submit"
+      class="badge badge-success mb-2"
+      (click)="updatePractice()"
+    >
+      Update
+    </button>
+    <p>{{ message }}</p>
+  </div>
+
+  <div *ngIf="!currentPractice.id">
+    <br />
+    <p>Cannot access this Practice...</p>
+  </div>
+</div>
