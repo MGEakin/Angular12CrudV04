@@ -27,7 +27,9 @@
         [class.active]="i == currentIndex"
         (click)="setActiveOpening(opening, i)"
       >
-        {{ opening.title }}
+        <a routerLink="/openings/{{opening.id}}" id="opening-{{opening.id}}">>
+          {{opening.title}}
+        </a>
       </li>
     </ul>
 

@@ -23,11 +23,10 @@
     <ul class="list-group">
       <li
         class="list-group-item"
-        *ngFor="let client of clients; let i = index"
-        [class.active]="i == currentIndex"
-        (click)="setActiveClient(client, i)"
-      >
-        {{ client.name }}
+        *ngFor="let client of clients; let i = index">
+        <a routerLink="/clients/{{client.id}}" id="client-{{client.id}}">>
+          {{client.name}}
+        </a>
       </li>
     </ul>
 

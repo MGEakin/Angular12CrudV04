@@ -27,7 +27,9 @@
         [class.active]="i == currentIndex"
         (click)="setActiveAssignment(assignment, i)"
       >
-        {{ assignment.title }}
+        <a routerLink="/assignments/{{assignment.id}}" id="assignment-{{assignment.id}}">>
+          {{assignment.title}}
+        </a>
       </li>
     </ul>
 

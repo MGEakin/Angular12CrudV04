@@ -27,7 +27,9 @@
         [class.active]="i == currentIndex"
         (click)="setActivePractice(practice, i)"
       >
-        {{ practice.name }}
+        <a routerLink="/practices/{{practice.id}}" id="practice-{{practice.id}}">>
+          {{practice.name}}
+        </a>
       </li>
     </ul>
 

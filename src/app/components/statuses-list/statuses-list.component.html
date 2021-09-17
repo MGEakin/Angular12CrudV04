@@ -27,7 +27,9 @@
         [class.active]="i == currentIndex"
         (click)="setActiveStatus(status, i)"
       >
-        {{ status.title }}
+        <a routerLink="/statuses/{{status.id}}" id="status-{{status.id}}">>
+          {{status.title}}
+        </a>
       </li>
     </ul>
 

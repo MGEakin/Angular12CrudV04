@@ -27,7 +27,9 @@
         [class.active]="i == currentIndex"
         (click)="setActiveRegion(region, i)"
       >
-        {{ region.name }}
+        <a routerLink="/regions/{{region.id}}" id="region-{{region.id}}">>
+          {{region.name}}
+        </a>
       </li>
     </ul>
 

@@ -27,7 +27,9 @@
         [class.active]="i == currentIndex"
         (click)="setActiveUser(user, i)"
       >
-        {{ user.name }}
+        <a routerLink="/users/{{user.id}}" id="user-{{user.id}}">>
+          {{user.name}}
+        </a>
       </li>
     </ul>
 
