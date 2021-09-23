@@ -1,6 +1,7 @@
 <div>
   <div class="submit-form">
     <div *ngIf="!submitted">
+      <h1>Add Assignment</h1>
       <div class="form-group">
         <label for="title">Title</label>
         <input
@@ -11,6 +12,60 @@
           [(ngModel)]="assignment.title"
           name="title"
         />
+      </div>
+
+        <div class="form-group">
+        <label for="startDate">Start Date</label>
+          <igx-date-picker>
+            <label igxLabel>Date</label>
+          </igx-date-picker>
+
+        </div>
+
+          <div class="form-group">
+        <label for="endDate">End Date</label>
+        <input
+          class="form-control"
+          id="endDate"
+          required
+          [(ngModel)]="assignment.endDate"
+          name="endDate"
+        />
+          </div>
+
+            <div class="form-group">
+        <label for="rate">Rate</label>
+        <input
+          class="form-control"
+          id="rate"
+          required
+          [(ngModel)]="assignment.rate"
+          name="rate"
+        />
+            </div>
+
+              <div class="form-group">
+        <label for="client_id">Client</label>
+        <select>
+          <option [ngValue]="null" disabled>Select Client</option>
+          <option *ngFor="let client of clients" [ngValue]="client.id" id="client_id">{{client.name}}</option>
+        </select>
+              </div>
+
+                <div class="form-group">
+        <label for="user_id">User</label>
+        <select>
+          <option [ngValue]="null" disabled>Select User</option>
+          <option *ngFor="let user of users" [ngValue]="user.id" id="user_id">{{user.name}}</option>
+        </select>
+                </div>
+
+      <div class="form-group">
+        <label for="role_id">Role</label>
+        <select>
+          <option [ngValue]="null" disabled>Select Role</option>
+          <option *ngFor="let role of roles" [ngValue]="role.id" id="role_id">{{role.title}}</option>
+        </select>
       </div>
 
       <button (click)="saveAssignment()" class="btn btn-success">Submit</button>

@@ -5,6 +5,7 @@ npm init
 
 npm install express sequelize mysql2 cors --save
 npm install bootstrap
+npm install igniteui-angular
 
 /**create /app/models/*.model.js **/
 /**create /app/controllers/*.controller.js **/

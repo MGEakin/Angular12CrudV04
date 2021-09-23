@@ -36,6 +36,11 @@
     <button class="m-3 btn btn-sm btn-danger" (click)="removeAllRegions()">
       Remove All
     </button>
+    <a routerLink="/region/add">
+      <button class="m-3 btn btn-sm btn-danger">
+        Add Region
+      </button>
+    </a>
   </div>
   <div class="col-md-6">
     <div *ngIf="currentRegion.id">

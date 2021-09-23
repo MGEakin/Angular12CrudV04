@@ -36,6 +36,11 @@
     <button class="m-3 btn btn-sm btn-danger" (click)="removeAllRoles()">
       Remove All
     </button>
+    <a routerLink="/role/add">
+      <button class="m-3 btn btn-sm btn-danger">
+        Add Role
+      </button>
+    </a>
   </div>
   <div class="col-md-6">
     <div *ngIf="currentRole.id">

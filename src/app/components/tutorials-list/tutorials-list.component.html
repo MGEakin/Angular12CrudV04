@@ -23,31 +23,28 @@
     <ul class="list-group">
       <li
         class="list-group-item"
-        *ngFor="let tutorial of tutorials; let i = index"
-        [class.active]="i == currentIndex"
-        (click)="setActiveTutorial(tutorial, i)"
-      >
-        {{ tutorial.title }}
+        *ngFor="let tutorial of tutorials; let i = index">
+        <a routerLink="/tutorials/{{tutorial.id}}" id="tutorial-{{tutorial.id}}">>
+          {{tutorial.title}}
+        </a>
       </li>
     </ul>
 
     <button class="m-3 btn btn-sm btn-danger" (click)="removeAllTutorials()">
       Remove All
     </button>
+
+    <a routerLink="/tutorial/add">
+      <button class="m-3 btn btn-sm btn-danger">
+        Add Tutorial
+      </button>
+    </a>
   </div>
   <div class="col-md-6">
     <div *ngIf="currentTutorial.id">
       <h4>Tutorial</h4>
       <div>
         <label><strong>Title:</strong></label> {{ currentTutorial.title }}
-      </div>
-      <div>
-        <label><strong>Description:</strong></label>
-        {{ currentTutorial.description }}
-      </div>
-      <div>
-        <label><strong>Status:</strong></label>
-        {{ currentTutorial.published ? "Published" : "Pending" }}
       </div>
 
       <a class="badge badge-warning" routerLink="/tutorials/{{ currentTutorial.id }}">

@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { HammerModule } from "@angular/platform-browser";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { IgxDatePickerModule } from 'igniteui-angular';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -33,8 +36,8 @@ import { UserDetailsComponent } from './components/user-details/user-details.com
 import { UsersListComponent } from './components/users-list/users-list.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MessagesComponent } from './messages/messages.component';
-import { ClientAssignmentsComponent } from './client-assignments/client-assignments.component';
-import { ClientOpeningsComponent } from './client-openings/client-openings.component';
+import { ClientAssignmentsComponent } from './components/client-assignments/client-assignments.component';
+import { ClientOpeningsComponent } from './components/client-openings/client-openings.component';
 import { RoleUsersComponent } from './role-users/role-users.component';
 import { PracticeAssignmentsComponent } from './practice-assignments/practice-assignments.component';
 import { PracticeOpeningsComponent } from './practice-openings/practice-openings.component';
@@ -88,6 +91,9 @@ import { ClientsListComponent } from './components/clients-list/clients-list.com
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    IgxDatePickerModule,
+    BrowserAnimationsModule,
+    HammerModule,
     HttpClientModule
   ],
   providers: [],
