@@ -20,6 +20,10 @@ export class AssignmentService {
     return this.http.get(`${baseUrl}/${id}`);
   }
 
+  getByClient(clientId: any): Observable<Assignment[]> {
+    return this.http.get<Assignment[]>(`${baseUrl}?clientId=${clientId}`);
+  }
+
   create(data: any): Observable<any> {
     return this.http.post(baseUrl, data);
   }
