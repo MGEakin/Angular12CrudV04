@@ -1,4 +1,7 @@
 export class User {
   id?: any;
-  name?: string;
+  firstName?: string;
+  lastName?: string;
+  role?: number;
+  practice?: number;
 }

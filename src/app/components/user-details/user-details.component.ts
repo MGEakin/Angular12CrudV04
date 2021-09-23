@@ -11,7 +11,10 @@ import { User } from 'src/app/models/user.model';
 export class UserDetailsComponent implements OnInit {
 
   currentUser: User = {
-    name: ''
+    firstName: '',
+    lastName: '',
+    role: 0,
+    practice: 0
   };
   message = '';
 

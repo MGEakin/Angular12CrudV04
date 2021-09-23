@@ -28,7 +28,7 @@
         (click)="setActiveUser(user, i)"
       >
         <a routerLink="/users/{{user.id}}" id="user-{{user.id}}">>
-          {{user.name}}
+          {{user.firstName}} {{user.lastName}}
         </a>
       </li>
     </ul>
@@ -46,7 +46,7 @@
     <div *ngIf="currentUser.id">
       <h4>User</h4>
       <div>
-        <label><strong>Name:</strong></label> {{ currentUser.name }}
+        <label><strong>Name:</strong></label> {{ currentUser.firstName }} {{ currentUser.lastName }}
       </div>
 
       <a class="badge badge-warning" routerLink="/users/{{ currentUser.id }}">

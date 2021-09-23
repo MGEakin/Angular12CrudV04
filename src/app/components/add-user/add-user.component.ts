@@ -10,7 +10,10 @@ import { UserService } from 'src/app/services/user.service';
 export class AddUserComponent implements OnInit {
 
   user: User = {
-    name: ''
+    firstName: '',
+    lastName: '',
+    role: 0,
+    practice: 0
   };
   submitted = false;
 
@@ -21,7 +24,10 @@ export class AddUserComponent implements OnInit {
 
   saveUser(): void {
     const data = {
-      name: this.user.name
+      firstName: this.user.firstName,
+      lastName: this.user.lastName,
+      role: this.user.role,
+      practice: this.user.practice
     };
 
     this.userService.create(data)
@@ -38,7 +44,10 @@ export class AddUserComponent implements OnInit {
   newUser(): void {
     this.submitted = false;
     this.user = {
-      name: ''
+      firstName: '',
+      lastName: '',
+      role: 0,
+      practice: 0
     };
   }
 }

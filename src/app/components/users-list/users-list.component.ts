@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
+import { RoleService } from 'src/app/services/role.service';
+import { Role } from 'src/app/models/role.model';
+import { PracticeService } from 'src/app/services/practice.service';
+import { Practice } from 'src/app/models/practice.model';
 
 @Component({
   selector: 'app-users-list',
@@ -8,13 +12,17 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./users-list.component.css']
 })
 export class UsersListComponent implements OnInit {
+  roles: Role[] = [];
+  practices: Practice[] = [];
 
   users?: User[];
   currentUser: User = {};
   currentIndex = -1;
   name = '';
 
-  constructor(private userService: UserService) { }
+  constructor(private practiceService: PracticeService,
+              private roleService: RoleService,
+              private userService: UserService) { }
 
   ngOnInit(): void {
     this.retrieveUsers();

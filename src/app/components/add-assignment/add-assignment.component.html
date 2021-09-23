@@ -14,24 +14,24 @@
         />
       </div>
 
-        <div class="form-group">
-        <label for="startDate">Start Date</label>
-          <igx-date-picker>
-            <label igxLabel>Date</label>
-          </igx-date-picker>
+<!--        <div class="form-group">-->
+<!--        <label for="startDate">Start Date</label>-->
+<!--          <igx-date-picker>-->
+<!--            <label igxLabel>Date</label>-->
+<!--          </igx-date-picker>-->
 
-        </div>
+<!--        </div>-->
 
-          <div class="form-group">
-        <label for="endDate">End Date</label>
-        <input
-          class="form-control"
-          id="endDate"
-          required
-          [(ngModel)]="assignment.endDate"
-          name="endDate"
-        />
-          </div>
+<!--          <div class="form-group">-->
+<!--        <label for="endDate">End Date</label>-->
+<!--        <input-->
+<!--          class="form-control"-->
+<!--          id="endDate"-->
+<!--          required-->
+<!--          [(ngModel)]="assignment.endDate"-->
+<!--          name="endDate"-->
+<!--        />-->
+<!--          </div>-->
 
             <div class="form-group">
         <label for="rate">Rate</label>
@@ -56,7 +56,7 @@
         <label for="user_id">User</label>
         <select>
           <option [ngValue]="null" disabled>Select User</option>
-          <option *ngFor="let user of users" [ngValue]="user.id" id="user_id">{{user.name}}</option>
+          <option *ngFor="let user of users" [ngValue]="user.id" id="user_id">{{user.firstName}} {{user.lastName}}</option>
         </select>
                 </div>
 
