@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { MessageService } from 'src/app/services/message.service';
 
 import { Assignment } from 'src/app/models/assignment.model';
 import { AssignmentService } from 'src/app/services/assignment.service';
@@ -10,6 +11,7 @@ import { RoleService } from 'src/app/services/role.service';
 import { Role } from 'src/app/models/role.model';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/user.model';
+import {tap} from "rxjs/operators";
 
 @Component({
   selector: 'app-client-assignments',
@@ -30,14 +32,15 @@ export class ClientAssignmentsComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private location: Location,
               private assignmentService: AssignmentService,
+              private messageService: MessageService,
               private clientService: ClientService,
               private roleService: RoleService,
               private userService: UserService) { }
 
   ngOnInit(): void {
-    this.getClient(),
-      this.getAssignmentsByClient()
-      // this.getRoleByAssignment(),
+      this.getClient(),
+      this.getAssignmentsByClient(),
+      this.buildAssignments()
       // this.getUserByAssignment()
   }
 
@@ -45,40 +48,44 @@ export class ClientAssignmentsComponent implements OnInit {
     const client_id = Number(this.route.snapshot.paramMap.get('id'));
     this.clientService.get(client_id)
       .subscribe(clients => this.currentClient = clients);
+    // this.log(`getClient() fetched currentClient:${JSON.stringify(this.currentClient)}`)
   }
 
   getAssignmentsByClient(): void {
-    // this.assignmentService.getByClient(this.currentClient.id)
+    // this.log(`getAssignmentsByClient() with currentClient=${JSON.stringify(this.currentClient)}`)
     this.assignmentService.getByClient(this.route.snapshot.paramMap.get('id'))
+    // this.assignmentService.getByClient(this.currentClient.id)
       .subscribe(assignments => this.assignments = assignments);
   }
 
   buildAssignments(): void {
+    this.log(`buildAssignments() with this.assignments length=${this.assignments.length}`)
     this.assignments.forEach(this.createAssignments)
   }
 
   createAssignments(value: any, index: any, array: any) {
+    this.log(`createAssignments()`)
 
     let currentAssignment = {
-      assignId: 0,
-      assignTitle: "",
-      assignStartDate: "",
-      assignEndDate: "",
-      assignRate: 0,
-      assignUserFName: "",
-      assignUserLName: "",
-      assignRole: ""
+      id: 0,
+      title: "",
+      startDate: "",
+      endDate: "",
+      rate: 0,
+      firstName: "",
+      lastName: "",
+      role: ""
     };
     this.getRoleByAssignment(value.roleId);
     this.getUserByAssignment(value.userId);
-    currentAssignment.assignTitle= value.title;
-    currentAssignment.assignTitle= value.title;
-    currentAssignment.assignStartDate= value.startDate;
-    currentAssignment.assignEndDate= value.endDate;
-    currentAssignment.assignRate= value.rate;
-    currentAssignment.assignUserFName= this.currentUser.firstName;
-    currentAssignment.assignUserFName= this.currentUser.lastName;
-    currentAssignment.assignRole= this.currentRole.title;
+    currentAssignment.id= value.id;
+    currentAssignment.title= value.title;
+    currentAssignment.startDate= value.startDate;
+    currentAssignment.endDate= value.endDate;
+    currentAssignment.rate= value.rate;
+    currentAssignment.firstName= this.currentUser.firstName;
+    currentAssignment.lastName= this.currentUser.lastName;
+    currentAssignment.role= this.currentRole.title;
     this.assignmentsDisplays.push(currentAssignment);
   }
 
@@ -97,4 +104,8 @@ export class ClientAssignmentsComponent implements OnInit {
     this.currentIndex = index;
   }
 
+  /** Log a TutorialService message with the MessageService */
+  private log(message: string) {
+    this.messageService.add(`TutorialService: ${message}`);
+  }
 }

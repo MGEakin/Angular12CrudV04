@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {Observable, of} from 'rxjs';
+
 import { Assignment } from '../models/assignment.model';
+import { catchError, map, tap } from 'rxjs/operators';
+import { MessageService } from './message.service';
+import {Tutorial} from "../models/tutorial.model";
 
 const baseUrl = 'http://localhost:8080/api/assignments';
 
@@ -10,7 +14,8 @@ const baseUrl = 'http://localhost:8080/api/assignments';
 })
 export class AssignmentService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private messageService: MessageService) { }
 
   getAll(): Observable<Assignment[]> {
     return this.http.get<Assignment[]>(baseUrl);
@@ -21,7 +26,11 @@ export class AssignmentService {
   }
 
   getByClient(clientId: any): Observable<Assignment[]> {
-    return this.http.get<Assignment[]>(`${baseUrl}?clientId=${clientId}`);
+    return this.http.get<Assignment[]>(`${baseUrl}?clientId=${clientId}`)
+      .pipe(
+        tap(_ => this.log(`fetched ${baseUrl}?clientId=${clientId}`)),
+        catchError(this.handleError<Assignment[]>('getByClient', []))
+      );
   }
 
   create(data: any): Observable<any> {
@@ -42,5 +51,30 @@ export class AssignmentService {
 
   findByTitle(title: any): Observable<Assignment[]> {
     return this.http.get<Assignment[]>(`${baseUrl}?title=${title}`);
+  }
+
+  /**
+   * Handle Http operation that failed.
+   * Let the app continue.
+   * @param operation - name of the operation that failed
+   * @param result - optional value to return as the observable result
+   */
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+
+      // TODO: send the error to remote logging infrastructure
+      console.error(error); // log to console instead
+
+      // TODO: better job of transforming error for region consumption
+      this.log(`${operation} failed: ${error.message}`);
+
+      // Let the app keep running by returning an empty result.
+      return of(result as T);
+    };
+  }
+
+  /** Log a TutorialService message with the MessageService */
+  private log(message: string) {
+    this.messageService.add(`TutorialService: ${message}`);
   }
 }
