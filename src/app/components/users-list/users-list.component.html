@@ -28,7 +28,7 @@
         (click)="setActiveUser(user, i)"
       >
         <a routerLink="/users/{{user.id}}" id="user-{{user.id}}">>
-          {{user.firstName}} {{user.lastName}}
+          {{user.firstName}} {{user.lastName}} {{user.email}} {{user.phone}}
         </a>
       </li>
     </ul>

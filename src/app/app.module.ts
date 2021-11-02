@@ -5,6 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { HammerModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IgxDatePickerModule } from 'igniteui-angular';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatTableModule} from '@angular/material/table'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -94,7 +96,9 @@ import { ClientsListComponent } from './components/clients-list/clients-list.com
     IgxDatePickerModule,
     BrowserAnimationsModule,
     HammerModule,
-    HttpClientModule
+    HttpClientModule,
+    MatTableModule,
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -18,6 +18,7 @@ cd Angular12CrudV10
 npm install -g @angular/cli
 npm install cypress --save-dev
 npm install --save-dev cypress-cucumber-preprocessor
+ng add @angular/material
 
 /** assignment **/
 ng generate service services/assignment 
@@ -98,4 +99,8 @@ ng generate component components/practice-users
 ng generate module app-routing --flat --module=app
 npm install angular-in-memory-web-api --save
 ng generate service InMemoryData
+***/
+/*** execution
+ng serve --port=8081 --open
+node server.js
 ***/

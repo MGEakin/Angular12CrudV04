@@ -12,6 +12,9 @@ export class AddUserComponent implements OnInit {
   user: User = {
     firstName: '',
     lastName: '',
+    email: '',
+    phone: '',
+    region: 0,
     role: 0,
     practice: 0
   };
@@ -24,10 +27,13 @@ export class AddUserComponent implements OnInit {
 
   saveUser(): void {
     const data = {
-      firstName: this.user.firstName,
-      lastName: this.user.lastName,
-      role: this.user.role,
-      practice: this.user.practice
+          firstName: this.user.firstName,
+          lastName: this.user.lastName,
+          email: this.user.email,
+          phone: this.user.phone,
+          region: this.user.region,
+          role: this.user.role,
+          practice: this.user.practice
     };
 
     this.userService.create(data)
@@ -46,6 +52,9 @@ export class AddUserComponent implements OnInit {
     this.user = {
       firstName: '',
       lastName: '',
+      email: '',
+      phone: '',
+      region: 0,
       role: 0,
       practice: 0
     };

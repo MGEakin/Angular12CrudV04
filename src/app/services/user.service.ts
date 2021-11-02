@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
+import { HttpHeaders, HttpParams} from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { User } from '../models/user.model';
+import { catchError, map, tap } from 'rxjs/operators';
+import { MessageService } from './message.service';
 
 const baseUrl = 'http://localhost:8080/api/users';
 
@@ -9,8 +12,11 @@ const baseUrl = 'http://localhost:8080/api/users';
   providedIn: 'root'
 })
 export class UserService {
-
-  constructor(private http: HttpClient) { }
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' })
+  };
+  constructor(private http: HttpClient,
+              private messageService: MessageService) { }
 
   getAll(): Observable<User[]> {
     return this.http.get<User[]>(baseUrl);
@@ -20,8 +26,11 @@ export class UserService {
     return this.http.get(`${baseUrl}/${id}`);
   }
 
-  create(data: any): Observable<any> {
-    return this.http.post(baseUrl, data);
+  create(data: User): Observable<User> {
+    return this.http.post(baseUrl, data).pipe(
+      tap((newUser: User) => this.log(`added user w/ id=${newUser.id}`)),
+      catchError(this.handleError<User>(`addUser`, data))
+    );
   }
 
   update(id: any, data: any): Observable<any> {
@@ -38,5 +47,28 @@ export class UserService {
 
   findByName(name: any): Observable<User[]> {
     return this.http.get<User[]>(`${baseUrl}?name=${name}`);
+  }
+
+  /**
+   * Handle Http operation that failed.
+   * Let the app continue.
+   * @param operation - name of the operation that failed
+   * @param result - optional value to return as the observable result
+   */
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+
+      console.error(error); // log to console instead
+
+      this.log(`${operation} failed: ${error.message}`);
+
+      // Let the app keep running by returning an empty result.
+      return of(result as T);
+    };
+  }
+
+  /** Log a UserService message with the MessageService */
+  private log(message: string) {
+    this.messageService.add(`UserService: ${message}`);
   }
 }
