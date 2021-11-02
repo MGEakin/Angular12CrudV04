@@ -5,7 +5,6 @@ import {Observable, of} from 'rxjs';
 import { Assignment } from '../models/assignment.model';
 import { catchError, map, tap } from 'rxjs/operators';
 import { MessageService } from './message.service';
-import {Tutorial} from "../models/tutorial.model";
 
 const baseUrl = 'http://localhost:8080/api/assignments';
 
@@ -34,7 +33,10 @@ export class AssignmentService {
   }
 
   create(data: any): Observable<any> {
-    return this.http.post(baseUrl, data);
+    return this.http.post(baseUrl, data).pipe(
+      tap((newAssignment: Assignment) => this.log(`added Assignment w/ id=${newAssignment.id}`)),
+      catchError(this.handleError<Assignment>(`addAssignment`, data))
+    );
   }
 
   update(id: any, data: any): Observable<any> {

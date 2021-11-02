@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {Observable, of} from 'rxjs';
 import { Client } from '../models/client.model';
+import { catchError, map, tap } from 'rxjs/operators';
+import { MessageService } from './message.service';
 
 const baseUrl = 'http://localhost:8080/api/clients';
 
@@ -10,7 +12,9 @@ const baseUrl = 'http://localhost:8080/api/clients';
 })
 export class ClientService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private messageService: MessageService) { }
+
 
   getAll(): Observable<Client[]> {
     return this.http.get<Client[]>(baseUrl);
@@ -21,7 +25,10 @@ export class ClientService {
   }
 
   create(data: any): Observable<any> {
-    return this.http.post(baseUrl, data);
+    return this.http.post(baseUrl, data).pipe(
+      tap((newClient: Client) => this.log(`added Client w/ id=${newClient.id}`)),
+      catchError(this.handleError<Client>(`addClient`, data))
+    );
   }
 
   update(id: any, data: any): Observable<any> {
@@ -38,5 +45,28 @@ export class ClientService {
 
   findByName(name: any): Observable<Client[]> {
     return this.http.get<Client[]>(`${baseUrl}?name=${name}`);
+  }
+
+  /**
+   * Handle Http operation that failed.
+   * Let the app continue.
+   * @param operation - name of the operation that failed
+   * @param result - optional value to return as the observable result
+   */
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+
+      console.error(error); // log to console instead
+
+      this.log(`${operation} failed: ${error.message}`);
+
+      // Let the app keep running by returning an empty result.
+      return of(result as T);
+    };
+  }
+
+  /** Log a ClientService message with the MessageService */
+  private log(message: string) {
+    this.messageService.add(`ClientService: ${message}`);
   }
 }
